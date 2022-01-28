@@ -17,7 +17,7 @@ def filter_place(events, place=None, **kwargs):
     return events  # just return all events for now ...
 
 
-def filter_year(data, min_year=None, max_year=None, **kwargs):
+def filter_year(events, min_year=None, max_year=None, **kwargs):
     """Filter by year
 
     Returns events filtered by year (inclusive).
@@ -34,7 +34,7 @@ def filter_year(data, min_year=None, max_year=None, **kwargs):
 
     # TODO and return the list of filtered events
 
-    return data  # just return all events for now ...
+    return events  # just return all events for now ...
 
 
 def filter_magnitude(events, min_mag=None, max_mag=None, **kwargs):
