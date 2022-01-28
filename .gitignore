@@ -1,0 +1,13 @@
+# OS specific files
+.DS_Store
+
+# Files or directories addes by editors
+.idea
+.settings
+.project
+.vscode
+.pydevproject
+
+# Python byte compiled files and directories
+*.py[cod]
+__pycache__/
