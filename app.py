@@ -24,9 +24,8 @@ def filter():
     events = get_events()  # all events
     kwargs = request.args.to_dict()  # request query parameters as dictionary
 
-    # TODO for every filter function ....
-
-    # TODO pass events and **kwargs as parameters, and update events with the return value
+    for filter in [filter_magnitude, filter_place, filter_year]:
+        events = filter(events, **kwargs)
 
     result = {"events": events}
 
@@ -34,4 +33,4 @@ def filter():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host="0.0.0.0", debug=True)

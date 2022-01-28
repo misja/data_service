@@ -6,35 +6,44 @@ def filter_place(events, place=None, **kwargs):
 
     Returns events filtererd by case insensitive place match.
     """
-    # TODO create an empty list for adding filtered events
-
-    # TODO if place is not None, loop through all events (else just return all events)
-
-    # TODO if event location contains place, add event to list
-
-    # TODO and return the list of filtered items
-
+    places = []
+    if place != None:
+        for x in events:
+            location = x['place']
+            if place.lower() in location.lower():
+                places += [x]
+        return places
     return events  # just return all events for now ...
-
 
 def filter_year(events, min_year=None, max_year=None, **kwargs):
     """Filter by year
 
     Returns events filtered by year (inclusive).
     """
-    # TODO create an empty list for adding filtered events
+    events_year = []
 
-    # TODO if min_year and/or max_year are not None, convert to int
+    if min_year:
+        min_year = int(min_year)
+    if max_year:
+        max_year = int(max_year)
 
-    # TODO loop through all events
+    if not min_year or not max_year:
+        return events
 
-    # TODO for each event, get the year as integer
+    for event in events:
+        year = event["date"]
 
-    # TODO for each event, check min_year and max_year (if not None) against year and if valid add to list
+        year = int(year[:4])
 
-    # TODO and return the list of filtered events
+        if min_year and year < min_year:
+            continue
 
-    return events  # just return all events for now ...
+        if max_year and year > max_year:
+            continue
+
+        events_year.append(event)
+
+    return events_year
 
 
 def filter_magnitude(events, min_mag=None, max_mag=None, **kwargs):
@@ -42,16 +51,18 @@ def filter_magnitude(events, min_mag=None, max_mag=None, **kwargs):
 
     Returns data entries filtered by magnitude (inclusive).
     """
-    # TODO create an empty list for adding filtered events
+    data = []
 
-    # TODO if min_mag and/or max_mag are not None, convert to float
+    if min_mag == None:
+        min_mag = 0.0
+    if max_mag == None:
+        max_mag = 99.9
 
-    # TODO loop through all events
+    for event in events:
+        if float(event["mag"]) >= float(min_mag) and float(event["mag"]) <= float(max_mag):
+            data.append(event)
 
-    # TODO for each event, get the magnitude as float
+    return data  # just return all events for now ...
 
-    # TODO for each event, check min_mag and max_mag (if not None) against event magnitude and if valid add to list
 
-    # TODO and return the list of filtered events
 
-    return events  # just return all events for now ...
